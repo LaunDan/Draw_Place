@@ -1,0 +1,15 @@
+draw/.gitignore
+draw/build.gradle
+draw/gradle.properties
+draw/gradlew
+draw/gradlew.bat
+draw/settings.gradle
+draw/.idea/.name
+draw/.idea/
+draw/gradle/wrapper/gradle-wrapper.properties
+draw/gradle/wrapper/gradle-wrapper.jar
+draw/app/.gitignore
+draw/app/build.gradle
+draw/app/proguard-rules.pro
+draw/app/src/androidTest/java/drawplace/p/ExampleInstrumentedTest.java
+draw/app/src/test/java/drawplace/p/ExampleUnitTest.java
