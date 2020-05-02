@@ -17,6 +17,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_draw_place);
 
 
+
         coords = findViewById(R.id.coord);
     }
 }
