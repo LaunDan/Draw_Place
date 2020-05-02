@@ -1,5 +1,6 @@
 package drawplace.p;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_draw_place);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 
 
 
