@@ -2,6 +2,7 @@ package drawplace.p;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -21,6 +22,18 @@ public class DrawPlaceActivity extends AppCompatActivity {
 
 
         coords = findViewById(R.id.coord);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        float xPos = event.getX();
+        float yPos = event.getY();
+
+
+        this.coords.setText("Coordinates:" + (int) xPos + "x" + (int) yPos);
+
+        return true;
     }
 }
 
