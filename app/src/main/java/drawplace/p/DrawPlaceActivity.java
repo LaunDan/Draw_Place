@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class DrawPlaceActivity extends AppCompatActivity {
 
-    private TextView coords;
+    
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,19 +21,9 @@ public class DrawPlaceActivity extends AppCompatActivity {
 
 
 
-        coords = findViewById(R.id.coord);
+
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
 
-        float xPos = event.getX();
-        float yPos = event.getY();
-
-
-        this.coords.setText("Coordinates:" + (int) xPos + "x" + (int) yPos);
-
-        return true;
-    }
 }
 
