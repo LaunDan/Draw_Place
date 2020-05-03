@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class DrawPlaceActivity extends AppCompatActivity {
 
-    
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
