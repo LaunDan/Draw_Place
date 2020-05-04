@@ -23,7 +23,14 @@ public class MyCanvas extends View {
         paint.setStrokeWidth(5);
 
     }
-//TODO change aplication to change path one by one
+    //TODO change application to change path one by one
+    
+    //TODO step back button
+
+    // TODO delete all button
+
+    // TODO change width of line
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float xPos = event.getX();
