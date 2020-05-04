@@ -48,6 +48,22 @@ public class MyCanvas extends View {
     public void onDraw(Canvas canvas){
         canvas.drawPath(path, paint);
     }
+     // set color of line
+    public void setColors(int color){
+        if (color == 0){
+            paint.setColor(Color.WHITE);
+        } else if (color == 1) {
+            paint.setColor(Color.YELLOW);
+        } else if (color == 2){
+            paint.setColor(Color.GREEN);
+        } else if (color == 3){
+            paint.setColor(Color.BLUE);
+        } else if (color == 4){
+            paint.setColor(Color.MAGENTA);
+        } else if (color == 5){
+            paint.setColor(Color.RED);
+        }
+    }
 
 
 }
