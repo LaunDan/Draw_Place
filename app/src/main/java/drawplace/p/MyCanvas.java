@@ -1,6 +1,7 @@
 package drawplace.p;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -42,5 +43,11 @@ public class MyCanvas extends View {
         invalidate();
         return true;
     }
+
+    @Override
+    public void onDraw(Canvas canvas){
+        canvas.drawPath(path, paint);
+    }
+    
 
 }
