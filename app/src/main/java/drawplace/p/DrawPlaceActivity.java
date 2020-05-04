@@ -2,10 +2,9 @@ package drawplace.p;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,8 +25,26 @@ public class DrawPlaceActivity extends AppCompatActivity {
         canvas.addView(myCanvas);
     }
 
-//TODO methods for change colors
+    
+    public void setColorWhite(View v) {
+        myCanvas.setColors(0);
+    }
 
+    public void setColorYellow(View v) {
+        myCanvas.setColors(1);
+    }
+
+    public void setColorGreen (View v) {
+        myCanvas.setColors(2);
+    }
+
+    public void setColorBlue (View v) {
+        myCanvas.setColors(3);
+    }
+
+    public void setColorRed(View v) {
+        myCanvas.setColors(4);
+    }
     //TODO create buttons for restart view and oneStepBack
 }
 
