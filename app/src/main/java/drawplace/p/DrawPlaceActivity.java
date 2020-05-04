@@ -26,6 +26,8 @@ public class DrawPlaceActivity extends AppCompatActivity {
         canvas.addView(myCanvas);
     }
 
+//TODO methods for change colors
 
+    //TODO create buttons for restart view and oneStepBack
 }
 
