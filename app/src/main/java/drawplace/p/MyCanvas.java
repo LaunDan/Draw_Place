@@ -23,7 +23,7 @@ public class MyCanvas extends View {
         paint.setStrokeWidth(5);
 
     }
-
+//TODO change aplication to change path one by one
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float xPos = event.getX();

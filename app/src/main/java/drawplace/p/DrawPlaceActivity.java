@@ -25,7 +25,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
         canvas.addView(myCanvas);
     }
 
-    
+
     public void setColorWhite(View v) {
         myCanvas.setColors(0);
     }
@@ -45,6 +45,5 @@ public class DrawPlaceActivity extends AppCompatActivity {
     public void setColorRed(View v) {
         myCanvas.setColors(4);
     }
-    //TODO create buttons for restart view and oneStepBack
 }
 
