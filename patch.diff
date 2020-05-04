@@ -1,0 +1,25 @@
+From 0ffdddbb5124f0282ae38e4d765a5d83bdc346c5 Mon Sep 17 00:00:00 2001
+From: LaunDan <launadaniel2@gmail.com>
+Date: Mon, 4 May 2020 14:51:14 +0200
+Subject: [PATCH] nothing
+
+---
+ app/src/main/java/drawplace/p/MyCanvas.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/app/src/main/java/drawplace/p/MyCanvas.java b/app/src/main/java/drawplace/p/MyCanvas.java
+index 8db8bdd..30eb2f4 100644
+--- a/app/src/main/java/drawplace/p/MyCanvas.java
++++ b/app/src/main/java/drawplace/p/MyCanvas.java
+@@ -24,7 +24,7 @@ public class MyCanvas extends View {
+ 
+     }
+     //TODO change application to change path one by one
+-    
++
+     //TODO step back button
+ 
+     // TODO delete all button
+-- 
+2.24.1.windows.2
+
