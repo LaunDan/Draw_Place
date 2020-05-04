@@ -4,6 +4,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +21,9 @@ public class DrawPlaceActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 
         myCanvas = new MyCanvas(this);
-        setContentView(myCanvas);
+        myCanvas.setColors(0);
+        FrameLayout canvas = findViewById(R.id.frameCanvas);
+        canvas.addView(myCanvas);
     }
 
 

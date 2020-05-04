@@ -14,7 +14,7 @@ public class MyCanvas extends View {
 
     public MyCanvas(Context context) {
         super(context);
-        paint.setColor(Color.WHITE);
+
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -25,11 +25,11 @@ public class MyCanvas extends View {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event){
+    public boolean onTouchEvent(MotionEvent event) {
         float xPos = event.getX();
         float yPos = event.getY();
 
-        switch (event.getAction()){
+        switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 path.moveTo(xPos, yPos);
                 break;
@@ -45,22 +45,21 @@ public class MyCanvas extends View {
     }
 
     @Override
-    public void onDraw(Canvas canvas){
+    public void onDraw(Canvas canvas) {
         canvas.drawPath(path, paint);
     }
-     // set color of line
-    public void setColors(int color){
-        if (color == 0){
+
+    // set color of line
+    public void setColors(int color) {
+        if (color == 0) {
             paint.setColor(Color.WHITE);
         } else if (color == 1) {
             paint.setColor(Color.YELLOW);
-        } else if (color == 2){
+        } else if (color == 2) {
             paint.setColor(Color.GREEN);
-        } else if (color == 3){
+        } else if (color == 3) {
             paint.setColor(Color.BLUE);
-        } else if (color == 4){
-            paint.setColor(Color.MAGENTA);
-        } else if (color == 5){
+        } else if (color == 4) {
             paint.setColor(Color.RED);
         }
     }
