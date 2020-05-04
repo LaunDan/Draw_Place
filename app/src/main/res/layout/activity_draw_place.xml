@@ -8,51 +8,71 @@
     android:weightSum="100">
 
 
+    <TableRow
+        android:layout_width="300dp"
+        android:layout_height="20dp"
+        android:weightSum="100"
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+    </TableRow>
+
     <FrameLayout
         android:id="@+id/frameCanvas"
         android:layout_width="match_parent"
-        android:layout_weight="110"
-        android:layout_height="wrap_content">
+        android:layout_height="670dp"
+        android:layout_weight="100">
 
     </FrameLayout>
 
     <TableRow
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:weightSum="100">
+        android:weightSum="100"
+        android:layout_gravity="center_horizontal">
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_weight="20"
             android:background="@color/colorWhite" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_weight="20"
             android:background="@color/colorYellow" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_weight="20"
             android:background="@color/colorRed" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_weight="20"
             android:background="@color/colorBlue" />
 
         <Button
             android:id="@+id/button5"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_weight="20"
             android:background="@color/colorGreen" />
     </TableRow>
