@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class DrawPlaceActivity extends AppCompatActivity {
 
-
+    private MyCanvas myCanvas;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -19,9 +19,8 @@ public class DrawPlaceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_draw_place);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
 
-
-
-
+        myCanvas = new MyCanvas(this);
+        setContentView(myCanvas);
     }
 
 

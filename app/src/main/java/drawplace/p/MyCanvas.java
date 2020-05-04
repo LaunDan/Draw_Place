@@ -48,6 +48,6 @@ public class MyCanvas extends View {
     public void onDraw(Canvas canvas){
         canvas.drawPath(path, paint);
     }
-    
+
 
 }
