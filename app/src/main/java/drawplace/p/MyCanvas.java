@@ -24,7 +24,7 @@ public class MyCanvas extends View {
 
     }
     //TODO change application to change path one by one
-    
+
     //TODO step back button
 
     // TODO delete all button
