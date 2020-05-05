@@ -1,13 +1,16 @@
 package drawplace.p;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+
 
 import java.util.ArrayList;
 
@@ -15,6 +18,7 @@ public class MyCanvas extends View {
     private Paint paint = new Paint();
     private Path path = new Path();
     private ArrayList<FingerPath> paths = new ArrayList<>();
+    private Bitmap mBitmap;
 
     public MyCanvas(Context context) {
         this(context, null);
@@ -70,5 +74,13 @@ public class MyCanvas extends View {
         } else if (color == 4) {
             paint.setColor(Color.RED);
         }
+    }
+
+    public void init(DisplayMetrics metrics){
+        int height = metrics.heightPixels;
+        int width = metrics.widthPixels;
+
+        mBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+
     }
 }
