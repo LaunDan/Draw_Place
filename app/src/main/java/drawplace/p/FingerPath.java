@@ -1,5 +1,6 @@
 package drawplace.p;
 
+import android.graphics.Color;
 import android.graphics.Path;
 public class FingerPath {
     public int color;
@@ -10,5 +11,9 @@ public class FingerPath {
         this.color = color;
         this.path = path;
         this.width = width;
+
+
     }
+
+
 }

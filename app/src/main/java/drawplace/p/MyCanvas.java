@@ -38,7 +38,7 @@ public class MyCanvas extends View {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeMiter(.5f);
-        paint.setStrokeWidth(5);
+
 
     }
 
