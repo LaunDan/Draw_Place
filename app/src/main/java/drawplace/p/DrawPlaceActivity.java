@@ -2,6 +2,7 @@ package drawplace.p;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -21,8 +22,16 @@ public class DrawPlaceActivity extends AppCompatActivity {
 
         myCanvas = new MyCanvas(this);
         myCanvas.setColors(0);
+        DisplayMetrics metrics = new DisplayMetrics();
         FrameLayout canvas = findViewById(R.id.frameCanvas);
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        myCanvas.init(metrics);
         canvas.addView(myCanvas);
+
+    }
+
+    public void clearAll(View v){
+        myCanvas.clearAll();
     }
 
 
