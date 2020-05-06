@@ -93,15 +93,15 @@ public class MyCanvas extends View {
     // set color of line
     public void setColors(int color) {
         if (color == 0) {
-            paint.setColor(Color.WHITE);
+            currentColor = Color.WHITE;
         } else if (color == 1) {
-            paint.setColor(Color.YELLOW);
+            currentColor = Color.YELLOW;
         } else if (color == 2) {
-            paint.setColor(Color.GREEN);
+            currentColor = Color.GREEN;
         } else if (color == 3) {
-            paint.setColor(Color.BLUE);
+            currentColor = Color.BLUE;
         } else if (color == 4) {
-            paint.setColor(Color.RED);
+            currentColor = Color.RED;
         }
     }
 
