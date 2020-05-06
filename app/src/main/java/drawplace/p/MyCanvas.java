@@ -64,7 +64,12 @@ public class MyCanvas extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
-        canvas.drawPath(path, paint);
+        canvas.save();
+
+        for (FingerPath fp : paths){
+            paint.setColor(fp.color);
+            paint.setStrokeWidth(fp.width);
+        }
     }
 
     // set color of line
