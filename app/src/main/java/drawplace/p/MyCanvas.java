@@ -5,16 +5,24 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import java.util.ArrayList;
 
 public class MyCanvas extends View {
     private Paint paint = new Paint();
     private Path path = new Path();
+    private ArrayList<FingerPath> paths = new ArrayList<>();
+
 
     public MyCanvas(Context context) {
-        super(context);
+        this(context, null);
+    }
 
+    public MyCanvas(Context context, AttributeSet attrs) {
+        super(context, attrs);
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -23,10 +31,11 @@ public class MyCanvas extends View {
         paint.setStrokeWidth(5);
 
     }
-    
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        path = new Path();
         float xPos = event.getX();
         float yPos = event.getY();
 
