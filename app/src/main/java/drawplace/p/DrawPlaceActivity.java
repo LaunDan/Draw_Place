@@ -6,8 +6,11 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.SeekBar;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.math.RoundingMode;
 
 public class DrawPlaceActivity extends AppCompatActivity {
 
@@ -37,7 +40,12 @@ public class DrawPlaceActivity extends AppCompatActivity {
     public void clearOne(View v){
         myCanvas.clearOne();
     }
-
+//TODO make seekbar work to change width of the line
+    public void changeWidth(View v){
+        SeekBar currentWidth = findViewById(R.id.widthValue);
+        int width = currentWidth.getProgress();
+        myCanvas.changeWidth(width);
+    }
 
     public void setColorWhite(View v) {
         myCanvas.setColors(0);

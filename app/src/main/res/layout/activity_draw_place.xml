@@ -27,10 +27,13 @@
             android:layout_height="wrap_content" />
 
         <SeekBar
-            android:id="@+id/seekBar"
+            android:id="@+id/widthValue"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            android:onClick="changeWidth"
+            android:max="50"
+            android:min="2"/>
 
         <Space
             android:layout_width="20dp"
