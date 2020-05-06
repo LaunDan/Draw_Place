@@ -34,6 +34,10 @@ public class DrawPlaceActivity extends AppCompatActivity {
         myCanvas.clearAll();
     }
 
+    public void clearOne(View v){
+        myCanvas.clearOne();
+    }
+
 
     public void setColorWhite(View v) {
         myCanvas.setColors(0);

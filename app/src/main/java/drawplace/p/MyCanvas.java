@@ -123,4 +123,11 @@ public class MyCanvas extends View {
         invalidate();
     }
 
+    public void clearOne(){
+        if (paths.size() >= 1) {
+            paths.remove(paths.size() - 1);
+            invalidate();
+        }
+    }
+
 }
