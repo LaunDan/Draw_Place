@@ -93,4 +93,9 @@ public class MyCanvas extends View {
         currentWidth = DEFAULT_WIDTH;
     }
 
+    public void clearAll(){
+        paths.clear();
+        invalidate();
+    }
+
 }
