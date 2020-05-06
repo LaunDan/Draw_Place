@@ -11,6 +11,7 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 
+
 import java.util.ArrayList;
 
 public class MyCanvas extends View {
@@ -23,6 +24,7 @@ public class MyCanvas extends View {
     public static final int DEFAULT_COLOR = Color.WHITE;
     private int currentColor;
     private int currentWidth;
+    private Paint mBitmapPaint = new Paint(Paint.DITHER_FLAG);
 
 
     public MyCanvas(Context context) {
@@ -40,16 +42,26 @@ public class MyCanvas extends View {
 
     }
 
+    private void touchStart(float x, float y){
+        path = new Path();
+        FingerPath fp = new FingerPath(currentColor, path, currentWidth);
+        paths.add(fp);
+
+        path.reset();
+        path.moveTo(x, y);
+
+    }
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        path = new Path();
         float xPos = event.getX();
         float yPos = event.getY();
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                path.moveTo(xPos, yPos);
+                touchStart(xPos, yPos);
+                invalidate();
                 break;
 
             case MotionEvent.ACTION_MOVE:
@@ -62,6 +74,7 @@ public class MyCanvas extends View {
         return true;
     }
 
+
     @Override
     public void onDraw(Canvas canvas) {
         canvas.save();
@@ -69,7 +82,12 @@ public class MyCanvas extends View {
         for (FingerPath fp : paths){
             paint.setColor(fp.color);
             paint.setStrokeWidth(fp.width);
+
+            mCanvas.drawPath(fp.path, paint);
         }
+
+        canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
+        canvas.restore();
     }
 
     // set color of line

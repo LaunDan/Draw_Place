@@ -1,7 +1,6 @@
 package drawplace.p;
 
-import java.nio.file.Path;
-
+import android.graphics.Path;
 public class FingerPath {
     public int color;
     public Path path;
