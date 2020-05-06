@@ -18,6 +18,11 @@ public class MyCanvas extends View {
     private Path path = new Path();
     private ArrayList<FingerPath> paths = new ArrayList<>();
     private Bitmap mBitmap;
+    private Canvas mCanvas;
+    public static int DEFAULT_WIDTH = 4;
+    public static final int DEFAULT_COLOR = Color.WHITE;
+    private int currentColor;
+    private int currentWidth;
 
 
     public MyCanvas(Context context) {
@@ -82,6 +87,10 @@ public class MyCanvas extends View {
         int width = metrics.widthPixels;
 
         mBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        mCanvas = new Canvas(mBitmap);
+
+        currentColor = DEFAULT_COLOR;
+        currentWidth = DEFAULT_WIDTH;
     }
 
 }
