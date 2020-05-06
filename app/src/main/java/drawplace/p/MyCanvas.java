@@ -23,7 +23,7 @@ public class MyCanvas extends View {
         paint.setStrokeWidth(5);
 
     }
-    //TODO make new branch to store old code
+    
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
