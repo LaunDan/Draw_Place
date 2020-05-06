@@ -47,6 +47,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
         myCanvas.changeWidth(width);
     }
 
+
     public void setColorWhite(View v) {
         myCanvas.setColors(0);
     }

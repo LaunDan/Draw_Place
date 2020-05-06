@@ -132,6 +132,7 @@ public class MyCanvas extends View {
 
     public void changeWidth(int cwidth){
         currentWidth = cwidth;
+        paint.setStrokeWidth(cwidth);
     }
 
 }
