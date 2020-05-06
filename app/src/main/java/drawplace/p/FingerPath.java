@@ -7,5 +7,9 @@ public class FingerPath {
     public Path path;
     public int width;
 
-    public FingerPath()
+    public FingerPath(int color, Path path, int width){
+        this.color = color;
+        this.path = path;
+        this.width = width;
+    }
 }
