@@ -78,6 +78,7 @@ public class MyCanvas extends View {
     @Override
     public void onDraw(Canvas canvas) {
         canvas.save();
+        mCanvas.drawColor(Color.BLACK);
 
         for (FingerPath fp : paths){
             paint.setColor(fp.color);
@@ -118,6 +119,7 @@ public class MyCanvas extends View {
 
     public void clearAll(){
         paths.clear();
+
         invalidate();
     }
 
