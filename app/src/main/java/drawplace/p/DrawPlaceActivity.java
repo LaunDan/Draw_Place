@@ -68,7 +68,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.save:
+                    case R.id.save: //TODO get work saving
                         myCanvas.setDrawingCacheEnabled(true);
                         String imgSaved = MediaStore.Images.Media.insertImage(getContentResolver(), myCanvas.getDrawingCache(), UUID.randomUUID().toString()+".png", "drawing");
                         if (imgSaved !=null){
