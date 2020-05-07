@@ -1,21 +1,19 @@
 package drawplace.p;
 
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.Menu;
+
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.PopupMenu;
 import android.widget.SeekBar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 
-import java.math.RoundingMode;
 
 public class DrawPlaceActivity extends AppCompatActivity {
 
@@ -58,12 +56,14 @@ public class DrawPlaceActivity extends AppCompatActivity {
 
     }
 
-    public void showPopup(View v) {
+    public void showMenu(View v) {
         PopupMenu popup = new PopupMenu(this, v);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.menu, popup.getMenu());
         popup.show();
     }
+
+
 
 
 
