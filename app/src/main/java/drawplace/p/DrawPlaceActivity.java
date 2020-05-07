@@ -61,8 +61,18 @@ public class DrawPlaceActivity extends AppCompatActivity {
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.menu, popup.getMenu());
         popup.show();
-    }
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.save:
+                        finish();
+                        return true;
+                        default:
+                            return false; }
+            }
+        });
 
+    }
 
 
 
