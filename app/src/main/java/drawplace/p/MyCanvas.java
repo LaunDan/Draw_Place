@@ -20,12 +20,13 @@ public class MyCanvas extends View {
     private ArrayList<FingerPath> paths = new ArrayList<>();
     private Bitmap mBitmap;
     private Canvas mCanvas;
-    public static int DEFAULT_WIDTH = 4;
+    public static int DEFAULT_WIDTH = 20;
     public static final int DEFAULT_COLOR = Color.WHITE;
     private int currentColor;
     private int currentWidth;
     private int currentBackground = Color.BLACK;
     private Paint mBitmapPaint = new Paint(Paint.DITHER_FLAG);
+
 
 
     public MyCanvas(Context context) {

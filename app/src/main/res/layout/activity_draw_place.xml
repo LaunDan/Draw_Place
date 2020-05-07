@@ -32,7 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:max="100"
-            android:min="1"/>
+            android:min="1"
+            android:progress="20"/>
 
         <Space
             android:layout_width="20dp"
@@ -69,14 +70,14 @@
 
     <TableRow
         android:layout_width="350dp"
-        android:layout_height="25dp"
+        android:layout_height="35dp"
         android:weightSum="100"
         android:layout_gravity="center_horizontal">
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:layout_weight="20"
             android:background="@color/colorWhite"
             android:onClick="setColorWhite"
@@ -89,7 +90,7 @@
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:layout_weight="20"
             android:background="@color/colorYellow"
             android:onClick="setColorYellow"
@@ -103,7 +104,7 @@
         <Button
             android:id="@+id/button3"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:layout_weight="20"
             android:background="@color/colorRed"
             android:onClick="setColorRed"
@@ -116,7 +117,7 @@
         <Button
             android:id="@+id/button4"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:layout_weight="20"
             android:background="@color/colorBlue"
             android:onClick="setColorBlue"
@@ -129,7 +130,7 @@
         <Button
             android:id="@+id/button5"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:layout_weight="20"
             android:background="@color/colorGreen"
             android:onClick="setColorGreen"
@@ -143,7 +144,7 @@
         <Button
             android:id="@+id/colorBlack"
             android:layout_width="50dp"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="20"
             android:background="@color/colorBlack"
