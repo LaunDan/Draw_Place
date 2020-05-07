@@ -24,6 +24,7 @@ public class MyCanvas extends View {
     public static final int DEFAULT_COLOR = Color.WHITE;
     private int currentColor;
     private int currentWidth;
+    private int currentBackground = Color.BLACK;
     private Paint mBitmapPaint = new Paint(Paint.DITHER_FLAG);
 
 
@@ -78,7 +79,7 @@ public class MyCanvas extends View {
     @Override
     public void onDraw(Canvas canvas) {
         canvas.save();
-        mCanvas.drawColor(Color.BLACK);
+        mCanvas.drawColor(currentBackground);
 
         for (FingerPath fp : paths){
             paint.setColor(fp.color);
@@ -133,6 +134,16 @@ public class MyCanvas extends View {
     public void changeWidth(int width){
         currentWidth = width;
         paint.setStrokeWidth(width);
+    }
+
+    public void changeBackground(){
+        if (currentBackground == Color.BLACK){
+            currentBackground = Color.WHITE;
+
+        } else if (currentBackground == Color.WHITE){
+            currentBackground = Color.BLACK;
+        }
+         invalidate();
     }
 
 }
