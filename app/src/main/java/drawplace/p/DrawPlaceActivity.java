@@ -1,11 +1,16 @@
 package drawplace.p;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.PopupMenu;
 import android.widget.SeekBar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,14 +58,22 @@ public class DrawPlaceActivity extends AppCompatActivity {
 
     }
 
-    public void clearAll(View v){
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menu, popup.getMenu());
+        popup.show();
+    }
+
+
+
+    public void clearAll(View v) {
         myCanvas.clearAll();
     }
 
-    public void clearOne(View v){
+    public void clearOne(View v) {
         myCanvas.clearOne();
     }
-//TODO make seekbar work to change width of the line
 
 
 
@@ -72,16 +85,20 @@ public class DrawPlaceActivity extends AppCompatActivity {
         myCanvas.setColors(1);
     }
 
-    public void setColorGreen (View v) {
+    public void setColorGreen(View v) {
         myCanvas.setColors(2);
     }
 
-    public void setColorBlue (View v) {
+    public void setColorBlue(View v) {
         myCanvas.setColors(3);
     }
 
     public void setColorRed(View v) {
         myCanvas.setColors(4);
+    }
+
+    public void menu(View v){
+
     }
 }
 
