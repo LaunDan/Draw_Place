@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBlack"
+
     android:weightSum="100">
 
 
@@ -68,7 +68,7 @@
     </FrameLayout>
 
     <TableRow
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="25dp"
         android:weightSum="100"
         android:layout_gravity="center_horizontal">
@@ -134,5 +134,23 @@
             android:background="@color/colorGreen"
             android:onClick="setColorGreen"
             android:layout_gravity="center_vertical"/>
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content" />
+
+
+        <Button
+            android:id="@+id/colorBlack"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="20"
+            android:background="@color/colorBlack"
+            android:onClick="setColorBlack" />
+
+
     </TableRow>
+
+
 </LinearLayout>

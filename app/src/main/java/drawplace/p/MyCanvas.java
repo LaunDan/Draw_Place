@@ -104,6 +104,8 @@ public class MyCanvas extends View {
             currentColor = Color.BLUE;
         } else if (color == 4) {
             currentColor = Color.RED;
+        } else if (color == 5) {
+            currentColor = Color.BLACK;
         }
     }
 

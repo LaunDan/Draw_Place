@@ -115,6 +115,10 @@ public class DrawPlaceActivity extends AppCompatActivity {
         myCanvas.setColors(4);
     }
 
+    public void setColorBlack(View v) {
+        myCanvas.setColors(5);
+    }
+
     public void menu(View v){
 
     }
