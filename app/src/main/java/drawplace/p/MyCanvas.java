@@ -130,9 +130,9 @@ public class MyCanvas extends View {
         }
     }
 
-    public void changeWidth(int cwidth){
-        currentWidth = cwidth;
-        paint.setStrokeWidth(cwidth);
+    public void changeWidth(int width){
+        currentWidth = width;
+        paint.setStrokeWidth(width);
     }
 
 }
