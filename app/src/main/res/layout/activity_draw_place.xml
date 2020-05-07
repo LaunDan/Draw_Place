@@ -69,7 +69,7 @@
 
     <TableRow
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
         android:weightSum="100"
         android:layout_gravity="center_horizontal">
 
@@ -79,7 +79,8 @@
             android:layout_height="20dp"
             android:layout_weight="20"
             android:background="@color/colorWhite"
-            android:onClick="setColorWhite"/>
+            android:onClick="setColorWhite"
+            android:layout_gravity="center_vertical"/>
 
         <Space
             android:layout_width="10dp"
@@ -91,11 +92,13 @@
             android:layout_height="20dp"
             android:layout_weight="20"
             android:background="@color/colorYellow"
-            android:onClick="setColorYellow"/>
+            android:onClick="setColorYellow"
+            android:layout_gravity="center_vertical"/>
 
         <Space
             android:layout_width="10dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            />
 
         <Button
             android:id="@+id/button3"
@@ -103,7 +106,8 @@
             android:layout_height="20dp"
             android:layout_weight="20"
             android:background="@color/colorRed"
-            android:onClick="setColorRed"/>
+            android:onClick="setColorRed"
+            android:layout_gravity="center_vertical"/>
 
         <Space
             android:layout_width="10dp"
@@ -115,7 +119,8 @@
             android:layout_height="20dp"
             android:layout_weight="20"
             android:background="@color/colorBlue"
-            android:onClick="setColorBlue"/>
+            android:onClick="setColorBlue"
+            android:layout_gravity="center_vertical"/>
 
         <Space
             android:layout_width="10dp"
@@ -127,6 +132,7 @@
             android:layout_height="20dp"
             android:layout_weight="20"
             android:background="@color/colorGreen"
-            android:onClick="setColorGreen"/>
+            android:onClick="setColorGreen"
+            android:layout_gravity="center_vertical"/>
     </TableRow>
 </LinearLayout>
