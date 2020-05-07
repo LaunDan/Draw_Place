@@ -31,6 +31,26 @@ public class DrawPlaceActivity extends AppCompatActivity {
         myCanvas.init(metrics);
         canvas.addView(myCanvas);
 
+        SeekBar currentWidth = findViewById(R.id.widthValue);
+        currentWidth.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                myCanvas.changeWidth(progress);
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
     }
 
     public void clearAll(View v){
@@ -41,11 +61,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
         myCanvas.clearOne();
     }
 //TODO make seekbar work to change width of the line
-    public void changeWidth(View v){
-        SeekBar currentWidth = findViewById(R.id.widthValue);
-        int width = currentWidth.getProgress();
-        myCanvas.changeWidth(width);
-    }
+
 
 
     public void setColorWhite(View v) {
