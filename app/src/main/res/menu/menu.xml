@@ -7,4 +7,8 @@
     <item android:id="@+id/save"
 
         android:title="save" />
+
+    <item android:id="@+id/end"
+
+        android:title="end" />
 </menu>

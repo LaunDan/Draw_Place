@@ -65,8 +65,16 @@ public class DrawPlaceActivity extends AppCompatActivity {
             @Override public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.save:
+                        return true;
+
+                    case R.id.background:
+                        myCanvas.changeBackground();
+                        return true;
+
+                    case R.id.end:
                         finish();
                         return true;
+
                         default:
                             return false; }
             }
