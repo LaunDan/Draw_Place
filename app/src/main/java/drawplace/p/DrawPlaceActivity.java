@@ -61,7 +61,6 @@ public class DrawPlaceActivity extends AppCompatActivity {
         });
 
 
-
     }
 
     public void showMenu(View v) {
