@@ -3,6 +3,7 @@ package drawplace.p;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -11,7 +12,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
-
+private boolean actStarted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +34,24 @@ public class WelcomeActivity extends AppCompatActivity {
             public void run() {
                 try {
                     sleep(4000);
-                    startActivity(new Intent(getApplicationContext(), DrawPlaceActivity.class));
+                    if(!actStarted) {
+                        startAct();
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                } finally {
-                    finish();
-                }
+                } 
             }
         };
         thrdWlcmscrnDelay.start();
+    }
+
+    private void startAct(){
+        startActivity(new Intent(getApplicationContext(), DrawPlaceActivity.class));
+        finish();
+    }
+
+    public void startOnClick(View v){
+        actStarted = true;
+        startAct();
     }
 }
