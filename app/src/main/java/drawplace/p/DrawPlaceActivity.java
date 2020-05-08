@@ -72,8 +72,16 @@ public class DrawPlaceActivity extends AppCompatActivity {
             @Override public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.save: //TODO get work saving
-
-
+                        myCanvas.setDrawingCacheEnabled(true);
+                        String imgSaved = MediaStore.Images.Media.insertImage(getContentResolver(), myCanvas.getDrawingCache(), UUID.randomUUID().toString()+".png", "drawing");
+                        if (imgSaved !=null){
+                            Toast savedToast = Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG);
+                            savedToast.show();
+                        } else{
+                            Toast unSaved = Toast.makeText(getApplicationContext(), "Opps, error. Image not saved, try again!", Toast.LENGTH_LONG);
+                            unSaved.show();
+                        }
+                        myCanvas.destroyDrawingCache();
                         return true;
 
                     case R.id.background:
