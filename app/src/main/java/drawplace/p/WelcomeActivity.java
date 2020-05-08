@@ -39,7 +39,7 @@ private boolean actStarted = false;
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                } 
+                }
             }
         };
         thrdWlcmscrnDelay.start();
