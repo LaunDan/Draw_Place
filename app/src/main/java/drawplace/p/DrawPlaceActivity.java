@@ -1,21 +1,19 @@
 package drawplace.p;
 
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
-
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 
@@ -56,10 +54,8 @@ public class DrawPlaceActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
-
 
     }
 
@@ -69,19 +65,11 @@ public class DrawPlaceActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu, popup.getMenu());
         popup.show();
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override public boolean onMenuItemClick(MenuItem item) {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.save: //TODO get work saving
-                        myCanvas.setDrawingCacheEnabled(true);
-                        String imgSaved = MediaStore.Images.Media.insertImage(getContentResolver(), myCanvas.getDrawingCache(), UUID.randomUUID().toString()+".png", "drawing");
-                        if (imgSaved !=null){
-                            Toast savedToast = Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG);
-                            savedToast.show();
-                        } else{
-                            Toast unSaved = Toast.makeText(getApplicationContext(), "Opps, error. Image not saved, try again!", Toast.LENGTH_LONG);
-                            unSaved.show();
-                        }
-                        myCanvas.destroyDrawingCache();
+                        savePicture();
                         return true;
 
                     case R.id.background:
@@ -92,15 +80,13 @@ public class DrawPlaceActivity extends AppCompatActivity {
                         finish();
                         return true;
 
-                        default:
-                            return false; }
+                    default:
+                        return false;
+                }
             }
         });
 
     }
-
-
-
 
     public void clearAll(View v) {
         myCanvas.clearAll();
@@ -109,8 +95,6 @@ public class DrawPlaceActivity extends AppCompatActivity {
     public void clearOne(View v) {
         myCanvas.clearOne();
     }
-
-
 
     public void setColorWhite(View v) {
         myCanvas.setColors(0);
@@ -136,6 +120,31 @@ public class DrawPlaceActivity extends AppCompatActivity {
         myCanvas.setColors(5);
     }
 
-
+    private void savePicture() {
+        AlertDialog.Builder saveDialog = new AlertDialog.Builder(this);
+        saveDialog.setTitle("Save?");
+        saveDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                myCanvas.setDrawingCacheEnabled(true);
+                String imgSaved = MediaStore.Images.Media.insertImage(getContentResolver(), myCanvas.getDrawingCache(), UUID.randomUUID().toString() + ".png", "drawing");
+                if (imgSaved != null) {
+                    Toast savedToast = Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG);
+                    savedToast.show();
+                } else {
+                    Toast unSaved = Toast.makeText(getApplicationContext(), "Opps, error. Image not saved, try again!", Toast.LENGTH_LONG);
+                    unSaved.show();
+                }
+                myCanvas.destroyDrawingCache();
+            }
+        });
+        saveDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        saveDialog.show();
+    }
 }
 
