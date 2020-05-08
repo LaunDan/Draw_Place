@@ -1,17 +1,23 @@
 package drawplace.p;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class MyCanvas extends View {
@@ -91,6 +97,7 @@ public class MyCanvas extends View {
 
         canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
         canvas.restore();
+
     }
 
     // set color of line
@@ -147,6 +154,11 @@ public class MyCanvas extends View {
             currentBackground = Color.BLACK;
         }
          invalidate();
+    }
+
+    public void savePicture(){
+
+
     }
 
 }

@@ -1,6 +1,8 @@
 package drawplace.p;
 
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
@@ -10,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
@@ -58,6 +61,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
         });
 
 
+
     }
 
     public void showMenu(View v) {
@@ -69,16 +73,8 @@ public class DrawPlaceActivity extends AppCompatActivity {
             @Override public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.save: //TODO get work saving
-                        myCanvas.setDrawingCacheEnabled(true);
-                        String imgSaved = MediaStore.Images.Media.insertImage(getContentResolver(), myCanvas.getDrawingCache(), UUID.randomUUID().toString()+".png", "drawing");
-                        if (imgSaved !=null){
-                            Toast savedToast = Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG);
-                            savedToast.show();
-                        } else{
-                            Toast unSaved = Toast.makeText(getApplicationContext(), "Opps, error. Image not saved, try again!", Toast.LENGTH_LONG);
-                            unSaved.show();
-                        }
-                        myCanvas.destroyDrawingCache();
+
+
                         return true;
 
                     case R.id.background:
@@ -133,8 +129,6 @@ public class DrawPlaceActivity extends AppCompatActivity {
         myCanvas.setColors(5);
     }
 
-    public void menu(View v){
 
-    }
 }
 
