@@ -29,3 +29,7 @@ app/src/androidTest/java/drawplace/p/ExampleInstrumentedTest.java
 app/src/test/java/drawplace/p/ExampleUnitTest.java
 gradle/wrapper/gradle-wrapper.jar
 gradle/wrapper/gradle-wrapper.properties
+build/
+app/release/app-release.aab
+private_key.pepk
+Draw.apk
