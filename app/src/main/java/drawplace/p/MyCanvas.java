@@ -1,23 +1,15 @@
 package drawplace.p;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
-
-
-import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class MyCanvas extends View {
@@ -60,7 +52,6 @@ public class MyCanvas extends View {
 
     }
 
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float xPos = event.getX();
@@ -82,7 +73,6 @@ public class MyCanvas extends View {
         return true;
     }
 
-
     @Override
     public void onDraw(Canvas canvas) {
         canvas.save();
@@ -100,7 +90,6 @@ public class MyCanvas extends View {
 
     }
 
-    // set color of line
     public void setColors(int color) {
         if (color == 0) {
             currentColor = Color.WHITE;
@@ -156,9 +145,5 @@ public class MyCanvas extends View {
          invalidate();
     }
 
-    public void savePicture(){
-
-
-    }
 
 }
