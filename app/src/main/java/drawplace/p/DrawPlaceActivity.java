@@ -127,7 +127,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
         saveDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                myCanvas.setDrawingCacheEnabled(true);
+                myCanvas.setDrawingCacheEnabled(true); //TODO find way to save image to device
 
                 String imgSaved = MediaStore.Images.Media.insertImage(getContentResolver(), myCanvas.getDrawingCache(), UUID.randomUUID().toString() + ".png", "drawing");
                 if (imgSaved != null) {
