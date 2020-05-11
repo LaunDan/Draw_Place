@@ -16,7 +16,7 @@ public class MyCanvas extends View {
     private Paint paint = new Paint();
     private Path path = new Path();
     private ArrayList<FingerPath> paths = new ArrayList<>();
-    private Bitmap mBitmap;
+    public Bitmap mBitmap;
     private Canvas mCanvas;
     public static int DEFAULT_WIDTH = 20;
     public static final int DEFAULT_COLOR = Color.WHITE;

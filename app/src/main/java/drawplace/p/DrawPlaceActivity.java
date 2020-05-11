@@ -1,11 +1,18 @@
 package drawplace.p;
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,12 +25,19 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Random;
 import java.util.UUID;
 
 
 public class DrawPlaceActivity extends AppCompatActivity {
 
     private MyCanvas myCanvas;
+    public OutputStream outputStream;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -129,17 +143,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
         saveDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                myCanvas.setDrawingCacheEnabled(true); //TODO find way to save image to device
-
-                String imgSaved = MediaStore.Images.Media.insertImage(getContentResolver(), myCanvas.getDrawingCache(), UUID.randomUUID().toString() + ".png", "drawing");
-                if (imgSaved != null) {
-                    Toast savedToast = Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG);
-                    savedToast.show();
-                } else {
-                    Toast unSaved = Toast.makeText(getApplicationContext(), "Oops, error. Image not saved, try again!", Toast.LENGTH_LONG);
-                    unSaved.show();
-                }
-                myCanvas.destroyDrawingCache();
+                saveBitmap(myCanvas.mBitmap);
             }
         });
         saveDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -149,6 +153,31 @@ public class DrawPlaceActivity extends AppCompatActivity {
             }
         });
         saveDialog.show();
+    }
+
+    private String saveBitmap(Bitmap bm) {
+        ContextWrapper cw = new ContextWrapper(getApplicationContext());
+        // path to /data/data/draw/app_data/imageDir
+        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+        // Create imageDir
+        File mypath=new File(directory,"profile.jpg");
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(mypath);
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bm.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return directory.getAbsolutePath();
     }
 }
 
