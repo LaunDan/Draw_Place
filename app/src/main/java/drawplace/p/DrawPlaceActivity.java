@@ -97,6 +97,8 @@ public class DrawPlaceActivity extends AppCompatActivity {
         myCanvas.clearOne();
     }
 
+    //TODO change colors changer
+
     public void setColorWhite(View v) {
         myCanvas.setColors(0);
     }
