@@ -27,6 +27,7 @@ public class MyCanvas extends View {
 
 
 
+
     public MyCanvas(Context context) {
         this(context, null);
     }
@@ -38,6 +39,7 @@ public class MyCanvas extends View {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeMiter(.5f);
+        this.setDrawingCacheEnabled(true);
 
 
     }
@@ -86,6 +88,7 @@ public class MyCanvas extends View {
         }
 
         canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
+        
         canvas.restore();
 
     }
@@ -145,5 +148,7 @@ public class MyCanvas extends View {
          invalidate();
     }
 
-
+    public Bitmap getBitmap(){
+        return this.getDrawingCache();
+    }
 }
