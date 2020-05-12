@@ -169,7 +169,6 @@ public class DrawPlaceActivity extends AppCompatActivity {
             bm.compress(Bitmap.CompressFormat.PNG, 100, fos);
         } catch (Exception e) {
             e.printStackTrace();
-
         } finally {
             try {
                 fos.close();
