@@ -54,6 +54,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
         myCanvas.init(metrics);
         canvas.addView(myCanvas);
 
+
         SeekBar currentWidth = findViewById(R.id.widthValue);
         currentWidth.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
