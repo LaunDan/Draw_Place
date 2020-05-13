@@ -84,7 +84,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.save: //TODO get work saving
+                    case R.id.save:
                         savePicture();
                         return true;
 
