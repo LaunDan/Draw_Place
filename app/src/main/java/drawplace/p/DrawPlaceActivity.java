@@ -158,7 +158,9 @@ public class DrawPlaceActivity extends AppCompatActivity {
 
     private void saveBitmap(Bitmap bm) {
 
+//TODO try to save image to app and show in app
 
+        
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
         File file = new File(directory, "UniqueFileName" + ".jpg");
