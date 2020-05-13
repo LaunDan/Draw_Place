@@ -156,11 +156,12 @@ public class DrawPlaceActivity extends AppCompatActivity {
         saveDialog.show();
     }
 
-    private void saveBitmap(Bitmap bm) {
+    private void saveBitmap(Bitmap bitmap) {
 
 //TODO try to save image to app and show in app
+        // TODO try to make screenshot and crop it 
 
-        
+        // canvas can be save only to the phone ass app cache so user can have it in app
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
         File file = new File(directory, "UniqueFileName" + ".jpg");
@@ -169,7 +170,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
             FileOutputStream fos = null;
             try {
                 fos = new FileOutputStream(file);
-                bm.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                 fos.flush();
                 fos.close();
             } catch (java.io.IOException e) {
