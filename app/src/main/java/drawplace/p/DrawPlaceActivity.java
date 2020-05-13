@@ -30,6 +30,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
 
@@ -159,7 +160,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
     private void saveBitmap(Bitmap bitmap) {
 
 //TODO try to save image to app and show in app
-        // TODO try to make screenshot and crop it 
+        // TODO try to make screenshot and crop it
 
         // canvas can be save only to the phone ass app cache so user can have it in app
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
@@ -176,6 +177,36 @@ public class DrawPlaceActivity extends AppCompatActivity {
             } catch (java.io.IOException e) {
                 e.printStackTrace();
             }
+        }
+        takeScreenshot();
+    }
+
+    private void takeScreenshot() {
+        Date now = new Date();
+        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
+
+        try {
+            // image naming and path  to include sd card  appending name you choose for file
+            String mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
+
+            // create bitmap screen capture
+            View v1 = getWindow().getDecorView().getRootView();
+            v1.setDrawingCacheEnabled(true);
+            Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
+            v1.setDrawingCacheEnabled(false);
+
+            File imageFile = new File(mPath);
+
+            FileOutputStream outputStream = new FileOutputStream(imageFile);
+            int quality = 100;
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
+            outputStream.flush();
+            outputStream.close();
+
+
+        } catch (Throwable e) {
+            // Several error may come out with file handling or DOM
+            e.printStackTrace();
         }
     }
 
