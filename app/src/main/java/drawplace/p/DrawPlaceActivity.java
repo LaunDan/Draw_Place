@@ -1,9 +1,11 @@
 package drawplace.p;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaScannerConnection;
@@ -21,9 +23,12 @@ import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -158,31 +163,46 @@ public class DrawPlaceActivity extends AppCompatActivity {
     }
 
     private void saveBitmap(Bitmap bitmap) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 10);
+        } else {
 
 //TODO try to save image to app and show in app
-        // TODO try to make screenshot and crop it
+            // TODO try to make screenshot and crop it
 
-        File file = Environment.getExternalStorageDirectory();
-        File newFile = new File(file, "draw.jpg");
+            File file = Environment.getExternalStorageDirectory();
+            File newFile = new File(file, "draw.jpg");
 
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(newFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
-            fileOutputStream.flush();
-            fileOutputStream.close();
-            Toast.makeText(DrawPlaceActivity.this,
-                    "Save Bitmap: " + fileOutputStream.toString(),
-                    Toast.LENGTH_LONG).show();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            Toast.makeText(DrawPlaceActivity.this,
-                    "Something wrong: " + e.getMessage(),
-                    Toast.LENGTH_LONG).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(DrawPlaceActivity.this,
-                    "Something wrong: " + e.getMessage(),
-                    Toast.LENGTH_LONG).show();
+            try {
+                FileOutputStream fileOutputStream = new FileOutputStream(newFile);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
+                fileOutputStream.flush();
+                fileOutputStream.close();
+                Toast.makeText(DrawPlaceActivity.this,
+                        "Save Bitmap: " + fileOutputStream.toString(),
+                        Toast.LENGTH_LONG).show();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                Toast.makeText(DrawPlaceActivity.this,
+                        "Something wrong: " + e.getMessage(),
+                        Toast.LENGTH_LONG).show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(DrawPlaceActivity.this,
+                        "Something wrong: " + e.getMessage(),
+                        Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,@NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 10){
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getApplicationContext(), "Permision granted!", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
