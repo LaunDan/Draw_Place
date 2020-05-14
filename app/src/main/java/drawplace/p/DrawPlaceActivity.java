@@ -44,6 +44,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
 
     private MyCanvas myCanvas;
     public OutputStream outputStream;
+    private boolean permissionAllowed = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -163,13 +164,10 @@ public class DrawPlaceActivity extends AppCompatActivity {
     }
 
     private void saveBitmap(Bitmap bitmap) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 10);
-        } else {
 
-//TODO try to save image to app and show in app
-            // TODO try to make screenshot and crop it
+        if(!permissionAllowed){
+            askPermission();
+        }
 
             File file = Environment.getExternalStorageDirectory();
             File newFile = new File(file, "draw.jpg");
@@ -193,6 +191,16 @@ public class DrawPlaceActivity extends AppCompatActivity {
                         "Something wrong: " + e.getMessage(),
                         Toast.LENGTH_LONG).show();
             }
+
+    }
+
+    private void askPermission(){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 10);
+        } else {
+            permissionAllowed = true;
+            saveBitmap(myCanvas.mBitmap);
         }
     }
 
@@ -201,12 +209,12 @@ public class DrawPlaceActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 10){
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(getApplicationContext(), "Permision granted!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Permission granted!", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-//TODO try to copy all code from blogspot.com and see if it will run
+
 
 }
 
