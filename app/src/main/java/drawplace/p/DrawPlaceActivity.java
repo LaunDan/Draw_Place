@@ -1,20 +1,13 @@
 package drawplace.p;
 
 import android.Manifest;
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.media.MediaScannerConnection;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,22 +15,16 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Date;
-import java.util.Random;
-import java.util.UUID;
 
 
 public class DrawPlaceActivity extends AppCompatActivity {
@@ -68,7 +55,6 @@ public class DrawPlaceActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 myCanvas.changeWidth(progress);
-
             }
 
             @Override
@@ -167,31 +153,31 @@ public class DrawPlaceActivity extends AppCompatActivity {
 
     private void saveBitmap(Bitmap bitmap) {
 
-        if(!permissionAllowed){
+        if (!permissionAllowed) {
             askPermission();
         }
 
-            File file = Environment.getExternalStorageDirectory();
-            File newFile = new File(file, nameOfPcs + ".jpg");
+        File file = Environment.getExternalStorageDirectory();
+        File newFile = new File(file, nameOfPcs + ".jpg");
 
-            try {
-                FileOutputStream fileOutputStream = new FileOutputStream(newFile);
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
-                fileOutputStream.flush();
-                fileOutputStream.close();
-                Toast.makeText(DrawPlaceActivity.this,
-                        "Saved Bitmap: " + fileOutputStream.toString(),
-                        Toast.LENGTH_LONG).show();
-            } catch (IOException e) {
-                e.printStackTrace();
-                Toast.makeText(DrawPlaceActivity.this,
-                        "Something wrong: " + e.getMessage(),
-                        Toast.LENGTH_LONG).show();
-            }
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(newFile);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
+            fileOutputStream.flush();
+            fileOutputStream.close();
+            Toast.makeText(DrawPlaceActivity.this,
+                    "Saved Bitmap: " + fileOutputStream.toString(),
+                    Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(DrawPlaceActivity.this,
+                    "Something wrong: " + e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        }
 
     }
 
-    private void askPermission(){
+    private void askPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 10);
@@ -202,9 +188,9 @@ public class DrawPlaceActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,@NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 10){
+        if (requestCode == 10) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(getApplicationContext(), "Permission granted!", Toast.LENGTH_SHORT).show();
             }
