@@ -45,6 +45,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
     private MyCanvas myCanvas;
     public OutputStream outputStream;
     private boolean permissionAllowed = false;
+    private int nameOfPcs = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -151,6 +152,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
         saveDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                nameOfPcs++;
                 saveBitmap(myCanvas.mBitmap);
             }
         });
@@ -170,7 +172,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
         }
 
             File file = Environment.getExternalStorageDirectory();
-            File newFile = new File(file, "draw.jpg");
+            File newFile = new File(file, nameOfPcs + ".jpg");
 
             try {
                 FileOutputStream fileOutputStream = new FileOutputStream(newFile);
@@ -178,12 +180,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
                 fileOutputStream.flush();
                 fileOutputStream.close();
                 Toast.makeText(DrawPlaceActivity.this,
-                        "Save Bitmap: " + fileOutputStream.toString(),
-                        Toast.LENGTH_LONG).show();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                Toast.makeText(DrawPlaceActivity.this,
-                        "Something wrong: " + e.getMessage(),
+                        "Saved Bitmap: " + fileOutputStream.toString(),
                         Toast.LENGTH_LONG).show();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -213,8 +210,6 @@ public class DrawPlaceActivity extends AppCompatActivity {
             }
         }
     }
-
-
 
 }
 
