@@ -145,7 +145,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
         saveDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                saveBitmap(myCanvas.getBitmap());
+                saveBitmap(myCanvas.mBitmap);
             }
         });
         saveDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -162,23 +162,31 @@ public class DrawPlaceActivity extends AppCompatActivity {
 //TODO try to save image to app and show in app
         // TODO try to make screenshot and crop it
 
-        // canvas can be save only to the phone ass app cache so user can have it in app
-        ContextWrapper cw = new ContextWrapper(getApplicationContext());
-        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
-        File file = new File(directory, "UniqueFileName" + ".jpg");
-        if (!file.exists()) {
-            Log.d("path", file.toString());
-            FileOutputStream fos = null;
-            try {
-                fos = new FileOutputStream(file);
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-                fos.flush();
-                fos.close();
-            } catch (java.io.IOException e) {
-                e.printStackTrace();
-            }
+        File file = Environment.getExternalStorageDirectory();
+        File newFile = new File(file, "test.jpg");
+
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(newFile);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
+            fileOutputStream.flush();
+            fileOutputStream.close();
+            Toast.makeText(DrawPlaceActivity.this,
+                    "Save Bitmap: " + fileOutputStream.toString(),
+                    Toast.LENGTH_LONG).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(DrawPlaceActivity.this,
+                    "Something wrong: " + e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(DrawPlaceActivity.this,
+                    "Something wrong: " + e.getMessage(),
+                    Toast.LENGTH_LONG).show();
         }
     }
+
+
 
 }
 
