@@ -148,7 +148,5 @@ public class MyCanvas extends View {
          invalidate();
     }
 
-    public Bitmap getBitmap(){
-        return this.getDrawingCache();
-    }
+
 }
