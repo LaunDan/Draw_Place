@@ -163,7 +163,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
         // TODO try to make screenshot and crop it
 
         File file = Environment.getExternalStorageDirectory();
-        File newFile = new File(file, "test.jpg");
+        File newFile = new File(file, "draw.jpg");
 
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(newFile);
@@ -186,7 +186,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
         }
     }
 
-
+//TODO try to copy all code from blogspot.com and see if it will run
 
 }
 
