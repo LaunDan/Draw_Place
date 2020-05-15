@@ -16,12 +16,14 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -33,9 +35,6 @@ public class DrawPlaceActivity extends AppCompatActivity {
     private MyCanvas myCanvas;
     private String currentNameOfImage;
     private EditText input;
-
-
-
 
 
     @Override
@@ -153,7 +152,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 currentNameOfImage = input.getText().toString();
-                if (currentNameOfImage.length() <= 2){
+                if (currentNameOfImage.length() <= 2) {
                     currentNameOfImage = random();
                 }
                 saveBitmap(myCanvas.mBitmap);
@@ -177,7 +176,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
 
             File file = Environment.getExternalStorageDirectory();
 
-            File newFile = new File(file,  currentNameOfImage + ".jpg");
+            File newFile = new File(file, currentNameOfImage + ".jpg");
 
             try {
                 FileOutputStream fileOutputStream = new FileOutputStream(newFile);
@@ -197,7 +196,6 @@ public class DrawPlaceActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -213,12 +211,10 @@ public class DrawPlaceActivity extends AppCompatActivity {
         StringBuilder randomStringBuilder = new StringBuilder();
         int randomLength = generator.nextInt(10);
         char tempChar;
-        for (int i = 0; i < randomLength; i++){
+        for (int i = 0; i < randomLength; i++) {
             tempChar = (char) (generator.nextInt(96) + 32);
             randomStringBuilder.append(tempChar);
         }
         return randomStringBuilder.toString();
     }
 }
-
-

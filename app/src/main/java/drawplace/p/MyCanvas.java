@@ -10,9 +10,11 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+
 import java.util.ArrayList;
 
 public class MyCanvas extends View {
+    
     private Paint paint = new Paint();
     private Path path = new Path();
     private ArrayList<FingerPath> paths = new ArrayList<>();
@@ -24,8 +26,6 @@ public class MyCanvas extends View {
     private int currentWidth;
     private int currentBackground = Color.BLACK;
     private Paint mBitmapPaint = new Paint(Paint.DITHER_FLAG);
-
-
 
 
     public MyCanvas(Context context) {
@@ -40,18 +40,14 @@ public class MyCanvas extends View {
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeMiter(.5f);
         this.setDrawingCacheEnabled(true);
-
-
     }
 
-    private void touchStart(float x, float y){
+    private void touchStart(float x, float y) {
         path = new Path();
         FingerPath fp = new FingerPath(currentColor, path, currentWidth);
         paths.add(fp);
-
         path.reset();
         path.moveTo(x, y);
-
     }
 
     @Override
@@ -80,7 +76,7 @@ public class MyCanvas extends View {
         canvas.save();
         mCanvas.drawColor(currentBackground);
 
-        for (FingerPath fp : paths){
+        for (FingerPath fp : paths) {
             paint.setColor(fp.color);
             paint.setStrokeWidth(fp.width);
 
@@ -88,7 +84,6 @@ public class MyCanvas extends View {
         }
 
         canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
-        
         canvas.restore();
     }
 
@@ -108,7 +103,7 @@ public class MyCanvas extends View {
         }
     }
 
-    public void init(DisplayMetrics metrics){
+    public void init(DisplayMetrics metrics) {
         int height = metrics.heightPixels;
         int width = metrics.widthPixels;
 
@@ -119,33 +114,32 @@ public class MyCanvas extends View {
         currentWidth = DEFAULT_WIDTH;
     }
 
-    public void clearAll(){
+    public void clearAll() {
         paths.clear();
 
         invalidate();
     }
 
-    public void clearOne(){
+    public void clearOne() {
         if (paths.size() >= 1) {
             paths.remove(paths.size() - 1);
             invalidate();
         }
     }
 
-    public void changeWidth(int width){
+    public void changeWidth(int width) {
         currentWidth = width;
         paint.setStrokeWidth(width);
     }
 
-    public void changeBackground(){
-        if (currentBackground == Color.BLACK){
+    public void changeBackground() {
+        if (currentBackground == Color.BLACK) {
             currentBackground = Color.WHITE;
 
-        } else if (currentBackground == Color.WHITE){
+        } else if (currentBackground == Color.WHITE) {
             currentBackground = Color.BLACK;
         }
-         invalidate();
+        invalidate();
     }
-
 
 }
