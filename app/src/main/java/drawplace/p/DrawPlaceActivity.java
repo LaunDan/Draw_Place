@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.Toast;
@@ -30,8 +31,9 @@ import java.io.OutputStream;
 public class DrawPlaceActivity extends AppCompatActivity {
 
     private MyCanvas myCanvas;
-    private boolean permissionAllowed = false;
-    private int nameOfPcs = 0;
+    private String currentNameOfImage;
+    private EditText input;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,13 @@ public class DrawPlaceActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         myCanvas.init(metrics);
         canvas.addView(myCanvas);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 10);
+        } else {
+
+        }
 
 
         SeekBar currentWidth = findViewById(R.id.widthValue);
@@ -134,10 +143,13 @@ public class DrawPlaceActivity extends AppCompatActivity {
     private void savePicture() {
         AlertDialog.Builder saveDialog = new AlertDialog.Builder(this);
         saveDialog.setTitle("Save?");
+        saveDialog.setMessage("Enter name of image.");
+        input = new EditText(this);
+        saveDialog.setView(input);
+
         saveDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                nameOfPcs++;
                 saveBitmap(myCanvas.mBitmap);
             }
         });
@@ -152,39 +164,32 @@ public class DrawPlaceActivity extends AppCompatActivity {
 
     private void saveBitmap(Bitmap bitmap) {
 
-        if (!permissionAllowed) {
-            askPermission();
-        }
-
-        File file = Environment.getExternalStorageDirectory();
-        File newFile = new File(file, nameOfPcs + ".jpg");
-
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(newFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
-            fileOutputStream.flush();
-            fileOutputStream.close();
-            Toast.makeText(DrawPlaceActivity.this,
-                    "Saved Bitmap: " + fileOutputStream.toString(),
-                    Toast.LENGTH_LONG).show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(DrawPlaceActivity.this,
-                    "Something wrong: " + e.getMessage(),
-                    Toast.LENGTH_LONG).show();
-        }
-
-    }
-
-    private void askPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 10);
         } else {
-            permissionAllowed = true;
-            saveBitmap(myCanvas.mBitmap);
+
+            File file = Environment.getExternalStorageDirectory();
+            File newFile = new File(file,  currentNameOfImage + ".jpg");
+
+            try {
+                FileOutputStream fileOutputStream = new FileOutputStream(newFile);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
+                fileOutputStream.flush();
+                fileOutputStream.close();
+                Toast.makeText(DrawPlaceActivity.this,
+                        "Image saved!",
+                        Toast.LENGTH_LONG).show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(DrawPlaceActivity.this,
+                        "Something wrong: " + e.getMessage(),
+                        Toast.LENGTH_LONG).show();
+            }
         }
+
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
