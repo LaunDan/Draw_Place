@@ -30,7 +30,6 @@ import java.io.OutputStream;
 public class DrawPlaceActivity extends AppCompatActivity {
 
     private MyCanvas myCanvas;
-    public OutputStream outputStream;
     private boolean permissionAllowed = false;
     private int nameOfPcs = 0;
 
