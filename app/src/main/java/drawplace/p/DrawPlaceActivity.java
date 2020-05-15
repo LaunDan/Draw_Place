@@ -25,7 +25,7 @@ import androidx.core.content.ContextCompat;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
+import java.util.Random;
 
 
 public class DrawPlaceActivity extends AppCompatActivity {
@@ -33,6 +33,9 @@ public class DrawPlaceActivity extends AppCompatActivity {
     private MyCanvas myCanvas;
     private String currentNameOfImage;
     private EditText input;
+
+
+
 
 
     @Override
@@ -150,6 +153,9 @@ public class DrawPlaceActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 currentNameOfImage = input.getText().toString();
+                if (currentNameOfImage.length() <= 2){
+                    currentNameOfImage = random();
+                }
                 saveBitmap(myCanvas.mBitmap);
             }
         });
@@ -170,6 +176,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
         } else {
 
             File file = Environment.getExternalStorageDirectory();
+
             File newFile = new File(file,  currentNameOfImage + ".jpg");
 
             try {
@@ -178,7 +185,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
                 fileOutputStream.flush();
                 fileOutputStream.close();
                 Toast.makeText(DrawPlaceActivity.this,
-                        "Image " + currentNameOfImage + " saved!",
+                        "Image " + ",," + currentNameOfImage + "''" + " saved!",
                         Toast.LENGTH_LONG).show();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -201,6 +208,17 @@ public class DrawPlaceActivity extends AppCompatActivity {
         }
     }
 
+    public static String random() {
+        Random generator = new Random();
+        StringBuilder randomStringBuilder = new StringBuilder();
+        int randomLength = generator.nextInt(10);
+        char tempChar;
+        for (int i = 0; i < randomLength; i++){
+            tempChar = (char) (generator.nextInt(96) + 32);
+            randomStringBuilder.append(tempChar);
+        }
+        return randomStringBuilder.toString();
+    }
 }
 
 
