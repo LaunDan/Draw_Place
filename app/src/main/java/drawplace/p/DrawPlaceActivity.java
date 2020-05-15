@@ -146,10 +146,10 @@ public class DrawPlaceActivity extends AppCompatActivity {
         saveDialog.setMessage("Enter name of image.");
         input = new EditText(this);
         saveDialog.setView(input);
-
         saveDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                currentNameOfImage = input.getText().toString();
                 saveBitmap(myCanvas.mBitmap);
             }
         });
@@ -178,7 +178,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
                 fileOutputStream.flush();
                 fileOutputStream.close();
                 Toast.makeText(DrawPlaceActivity.this,
-                        "Image saved!",
+                        "Image " + currentNameOfImage + " saved!",
                         Toast.LENGTH_LONG).show();
             } catch (IOException e) {
                 e.printStackTrace();
