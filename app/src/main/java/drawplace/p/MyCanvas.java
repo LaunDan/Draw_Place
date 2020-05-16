@@ -6,6 +6,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -27,6 +29,8 @@ public class MyCanvas extends View {
     private int currentBackground = Color.BLACK;
     private Paint mBitmapPaint = new Paint(Paint.DITHER_FLAG);
     public Bitmap imageBitmap;
+    public Rect frameToDraw;
+    public RectF whereToDraw;
 
 
     public MyCanvas(Context context) {
@@ -78,7 +82,7 @@ public class MyCanvas extends View {
         if(imageBitmap == null){
             mCanvas.drawColor(currentBackground);
         } else {
-            mCanvas.drawBitmap(imageBitmap, 0, 0, mBitmapPaint);
+            mCanvas.drawBitmap(imageBitmap, frameToDraw, whereToDraw, mBitmapPaint);
         }
 
 
@@ -122,7 +126,7 @@ public class MyCanvas extends View {
 
     public void clearAll() {
         paths.clear();
-
+        imageBitmap = null;
         invalidate();
     }
 

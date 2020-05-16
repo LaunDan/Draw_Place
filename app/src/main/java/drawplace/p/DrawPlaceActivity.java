@@ -8,6 +8,8 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -268,9 +270,14 @@ public class DrawPlaceActivity extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath, options);
             Bitmap bitmapImage = scaleDown(bitmap, 1900, true);
 
-
-
             // Do something with the bitmap
+            DisplayMetrics metrics = myCanvas.getResources().getDisplayMetrics();
+            int width = metrics.widthPixels;
+            int height = metrics.heightPixels;
+
+            myCanvas.frameToDraw = new Rect(0, 0, width, height);
+            myCanvas.whereToDraw = new RectF(0, 0, width, height);
+
             myCanvas.imageBitmap = bitmapImage;
 
             // At the end remember to close the cursor or you will end with the RuntimeException!
