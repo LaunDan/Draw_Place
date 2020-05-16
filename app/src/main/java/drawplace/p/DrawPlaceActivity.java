@@ -40,7 +40,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
     private MyCanvas myCanvas;
     private String currentNameOfImage;
     private EditText input;
-    final  int IMAGE = 1;
+    final int IMAGE = 1;
 
 
     @Override
@@ -235,10 +235,16 @@ public class DrawPlaceActivity extends AppCompatActivity {
         return randomStringBuilder.toString();
     }
 
-    private void insertImage(){
-        Intent intent = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, IMAGE);
+    private void insertImage() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 10);
+        } else {
+
+            Intent intent = new Intent(Intent.ACTION_PICK,
+                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, IMAGE);
+        }
     }
 
     @Override
@@ -252,7 +258,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
             // Let's read picked image data - its URI
             Uri pickedImage = data.getData();
             // Let's read picked image path using content resolver
-            String[] filePath = { MediaStore.Images.Media.DATA };
+            String[] filePath = {MediaStore.Images.Media.DATA};
             Cursor cursor = getContentResolver().query(pickedImage, filePath, null, null, null);
             cursor.moveToFirst();
             String imagePath = cursor.getString(cursor.getColumnIndex(filePath[0]));
@@ -262,7 +268,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath, options);
 
             // Do something with the bitmap
-
+            myCanvas.imageBitmap = bitmap;
 
             // At the end remember to close the cursor or you will end with the RuntimeException!
             cursor.close();
