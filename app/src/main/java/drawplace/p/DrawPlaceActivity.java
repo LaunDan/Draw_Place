@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.net.Uri;
@@ -268,33 +269,31 @@ public class DrawPlaceActivity extends AppCompatActivity {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inPreferredConfig = Bitmap.Config.ARGB_8888;
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath, options);
-            Bitmap bitmapImage = scaleDown(bitmap, 1900, true);
 
+            Bitmap rotatedBitmap = rotateBitmap(bitmap, 90);
             // Do something with the bitmap
             DisplayMetrics metrics = myCanvas.getResources().getDisplayMetrics();
             int width = metrics.widthPixels;
-            int height = metrics.heightPixels;
+            int height = ((metrics.heightPixels / 100) * 80);
 
-            myCanvas.frameToDraw = new Rect(0, 0, width, height);
-            myCanvas.whereToDraw = new RectF(0, 0, width, height);
 
-            myCanvas.imageBitmap = bitmapImage;
+            int widthI = rotatedBitmap.getWidth();
+            int heightI = rotatedBitmap.getHeight();
+
+            myCanvas.frameToDraw = new Rect(0, 0, widthI, heightI);
+            myCanvas.whereToDraw = new RectF(0, 150, width, height);
+
+            myCanvas.imageBitmap = rotatedBitmap;
 
             // At the end remember to close the cursor or you will end with the RuntimeException!
             cursor.close();
         }
     }
 
-    public static Bitmap scaleDown(Bitmap realImage, float maxImageSize,
-                                   boolean filter) {
-        float ratio = Math.min(
-                (float) maxImageSize / realImage.getWidth(),
-                (float) maxImageSize / realImage.getHeight());
-        int width = Math.round((float) ratio * realImage.getWidth());
-        int height = Math.round((float) ratio * realImage.getHeight());
-
-        Bitmap newBitmap = Bitmap.createScaledBitmap(realImage, width,
-                height, filter);
-        return newBitmap;
+    public static Bitmap rotateBitmap(Bitmap source, float angle) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
+
 }
