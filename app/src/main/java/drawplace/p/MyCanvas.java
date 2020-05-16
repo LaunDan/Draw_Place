@@ -14,7 +14,7 @@ import android.view.View;
 import java.util.ArrayList;
 
 public class MyCanvas extends View {
-    
+
     private Paint paint = new Paint();
     private Path path = new Path();
     private ArrayList<FingerPath> paths = new ArrayList<>();
