@@ -126,7 +126,6 @@ public class MyCanvas extends View {
 
     public void clearAll() {
         paths.clear();
-        imageBitmap = null;
         invalidate();
     }
 
@@ -143,6 +142,7 @@ public class MyCanvas extends View {
     }
 
     public void changeBackground() {
+        imageBitmap = null;
         if (currentBackground == Color.BLACK) {
             currentBackground = Color.WHITE;
 
