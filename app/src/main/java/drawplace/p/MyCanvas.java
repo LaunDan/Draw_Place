@@ -82,6 +82,7 @@ public class MyCanvas extends View {
         if(imageBitmap == null){
             mCanvas.drawColor(currentBackground);
         } else {
+            mCanvas.drawColor(currentBackground);
             mCanvas.drawBitmap(imageBitmap, frameToDraw, whereToDraw, mBitmapPaint);
         }
 
@@ -92,6 +93,7 @@ public class MyCanvas extends View {
 
             mCanvas.drawPath(fp.path, paint);
         }
+
 
         canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
         canvas.restore();
