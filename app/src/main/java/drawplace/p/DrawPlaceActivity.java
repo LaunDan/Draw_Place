@@ -266,12 +266,28 @@ public class DrawPlaceActivity extends AppCompatActivity {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inPreferredConfig = Bitmap.Config.ARGB_8888;
             Bitmap bitmap = BitmapFactory.decodeFile(imagePath, options);
+            Bitmap bitmapImage = scaleDown(bitmap, 1900, true);
+
+
 
             // Do something with the bitmap
-            myCanvas.imageBitmap = bitmap;
+            myCanvas.imageBitmap = bitmapImage;
 
             // At the end remember to close the cursor or you will end with the RuntimeException!
             cursor.close();
         }
+    }
+
+    public static Bitmap scaleDown(Bitmap realImage, float maxImageSize,
+                                   boolean filter) {
+        float ratio = Math.min(
+                (float) maxImageSize / realImage.getWidth(),
+                (float) maxImageSize / realImage.getHeight());
+        int width = Math.round((float) ratio * realImage.getWidth());
+        int height = Math.round((float) ratio * realImage.getHeight());
+
+        Bitmap newBitmap = Bitmap.createScaledBitmap(realImage, width,
+                height, filter);
+        return newBitmap;
     }
 }
