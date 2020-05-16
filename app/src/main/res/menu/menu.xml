@@ -4,6 +4,10 @@
 
         android:title="background" />
 
+    <item android:id="@+id/insert"
+
+        android:title="insert" />
+
     <item android:id="@+id/save"
 
         android:title="save" />
