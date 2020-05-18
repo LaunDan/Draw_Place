@@ -64,15 +64,11 @@ public class DrawPlaceActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 10);
-        } else {
-
         }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 10);
-        } else {
-
         }
 
 
@@ -262,7 +258,9 @@ public class DrawPlaceActivity extends AppCompatActivity {
             Uri pickedImage = data.getData();
             // Let's read picked image path using content resolver
             String[] filePath = {MediaStore.Images.Media.DATA};
+            assert pickedImage != null;
             Cursor cursor = getContentResolver().query(pickedImage, filePath, null, null, null);
+            assert cursor != null;
             cursor.moveToFirst();
             String imagePath = cursor.getString(cursor.getColumnIndex(filePath[0]));
 
