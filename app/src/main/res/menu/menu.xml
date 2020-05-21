@@ -9,6 +9,9 @@
     <item android:id="@+id/save"
         android:title="save" />
 
+    <item android:id="@+id/ads"
+        android:title="show ads" />
+
     <item android:id="@+id/end"
         android:title="end" />
 

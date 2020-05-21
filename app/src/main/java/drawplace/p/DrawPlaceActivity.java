@@ -32,18 +32,25 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Random;
 
 
-public class DrawPlaceActivity extends AppCompatActivity {
+public class DrawPlaceActivity extends AppCompatActivity implements RewardedVideoAdListener {
 
     private MyCanvas myCanvas;
     private String currentNameOfImage;
     private EditText input;
     final int IMAGE = 1;
+    RewardedVideoAd mAd;
 
 
     @Override
@@ -60,6 +67,11 @@ public class DrawPlaceActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         myCanvas.init(metrics);
         canvas.addView(myCanvas);
+
+        MobileAds.initialize(this, "ca-app-pub-8565963453586256~2290742640");
+        mAd = MobileAds.getRewardedVideoAdInstance(this);
+        mAd.setRewardedVideoAdListener(this);
+        mAd.loadAd("ca-app-pub-8565963453586256/7582350354", new AdRequest.Builder().build());
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -106,6 +118,10 @@ public class DrawPlaceActivity extends AppCompatActivity {
 
                     case R.id.insert:
                         insertImage();
+                        return true;
+
+                    case R.id.ads:
+                        showAds();
                         return true;
 
                     case R.id.background:
@@ -294,4 +310,44 @@ public class DrawPlaceActivity extends AppCompatActivity {
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 
+    private void showAds() {
+        if (mAd.isLoaded()) {
+            mAd.show();
+        }
+    }
+
+    @Override
+    public void onRewardedVideoAdLoaded() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdOpened() {
+
+    }
+
+    @Override
+    public void onRewardedVideoStarted() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdClosed() {
+
+    }
+
+    @Override
+    public void onRewarded(RewardItem rewardItem) {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdLeftApplication() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdFailedToLoad(int i) {
+
+    }
 }
