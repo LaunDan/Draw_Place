@@ -45,7 +45,7 @@ import java.util.Random;
 
 
 public class DrawPlaceActivity extends AppCompatActivity implements RewardedVideoAdListener {
-
+// todo make apk for upload in googlePlay
     private MyCanvas myCanvas;
     private String currentNameOfImage;
     private EditText input;
