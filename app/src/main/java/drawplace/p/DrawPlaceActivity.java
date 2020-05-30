@@ -52,7 +52,6 @@ public class DrawPlaceActivity extends AppCompatActivity implements RewardedVide
     final int IMAGE = 1;
     RewardedVideoAd mAd;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
