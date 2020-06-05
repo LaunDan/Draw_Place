@@ -349,4 +349,9 @@ public class DrawPlaceActivity extends AppCompatActivity implements RewardedVide
     public void onRewardedVideoAdFailedToLoad(int i) {
 
     }
+
+    @Override
+    public void onRewardedVideoCompleted() {
+
+    }
 }
