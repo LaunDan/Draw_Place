@@ -67,7 +67,7 @@ public class DrawPlaceActivity extends AppCompatActivity implements RewardedVide
         myCanvas.init(metrics);
         canvas.addView(myCanvas);
 
-        MobileAds.initialize(this);
+        MobileAds.initialize(this,"ca-app-pub-8565963453586256~2290742640");
         mAd = MobileAds.getRewardedVideoAdInstance(this);
         mAd.setRewardedVideoAdListener(this);
         mAd.loadAd("ca-app-pub-8565963453586256/7582350354", new AdRequest.Builder().build());
