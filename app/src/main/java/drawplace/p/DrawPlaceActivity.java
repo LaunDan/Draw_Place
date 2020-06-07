@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,9 +35,15 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdCallback;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
+import com.google.android.gms.measurement.api.AppMeasurementSdk;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -44,13 +51,14 @@ import java.io.IOException;
 import java.util.Random;
 
 
-public class DrawPlaceActivity extends AppCompatActivity implements RewardedVideoAdListener {
+public class DrawPlaceActivity extends AppCompatActivity {
 
     private MyCanvas myCanvas;
     private String currentNameOfImage;
     private EditText input;
     final int IMAGE = 1;
-    RewardedVideoAd mAd;
+    private RewardedAd mAd;
+    private static final String TAG = "MainActivity";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,10 +75,14 @@ public class DrawPlaceActivity extends AppCompatActivity implements RewardedVide
         myCanvas.init(metrics);
         canvas.addView(myCanvas);
 
-        MobileAds.initialize(this,"ca-app-pub-8565963453586256~2290742640");
-        mAd = MobileAds.getRewardedVideoAdInstance(this);
-        mAd.setRewardedVideoAdListener(this);
-        mAd.loadAd("ca-app-pub-8565963453586256/7582350354", new AdRequest.Builder().build());
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+
+            }
+        });
+        loadAd();
+
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -310,50 +322,40 @@ public class DrawPlaceActivity extends AppCompatActivity implements RewardedVide
     }
 
     private void showAds() {
-        if (mAd.isLoaded()) {
-            mAd.show();
+        if (this.mAd.isLoaded()) {
+            RewardedAdCallback callback = new RewardedAdCallback() {
+                @Override
+                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                    Log.i(TAG, "onUserEarnedReward");
+                }
+
+                @Override
+                public void onRewardedAdFailedToShow(int i) {
+                    super.onRewardedAdFailedToShow(i);
+                    Log.i(TAG, "onRewardedAdClosed");
+                }
+            };
+            this.mAd.show(this, callback);
         } else {
-            mAd.loadAd("ca-app-pub-8565963453586256/7582350354", new AdRequest.Builder().build());
+            loadAd();
         }
     }
 
-    @Override
-    public void onRewardedVideoAdLoaded() {
+    private void loadAd() {
+        this.mAd = new RewardedAd(this, "ca-app-pub-8565963453586256/7582350354");
+        RewardedAdLoadCallback callback = new RewardedAdLoadCallback(){
+            @Override
+            public void onRewardedAdFailedToLoad(int i) {
+                super.onRewardedAdFailedToLoad(i);
+                Log.i(TAG, "onRewardedAdFailedToLoad");
+            }
 
-    }
-
-    @Override
-    public void onRewardedVideoAdOpened() {
-
-    }
-
-    @Override
-    public void onRewardedVideoStarted() {
-
-    }
-
-    @Override
-    public void onRewardedVideoAdClosed() {
-
-    }
-
-    @Override
-    public void onRewarded(RewardItem rewardItem) {
-
-    }
-
-    @Override
-    public void onRewardedVideoAdLeftApplication() {
-
-    }
-
-    @Override
-    public void onRewardedVideoAdFailedToLoad(int i) {
-
-    }
-
-    @Override
-    public void onRewardedVideoCompleted() {
-
+            @Override
+            public void onRewardedAdLoaded() {
+                super.onRewardedAdLoaded();
+                Log.i(TAG, "onRewardedAdLoaded");
+            }
+        };
+        this.mAd.loadAd(new AdRequest.Builder().build(), callback);
     }
 }
