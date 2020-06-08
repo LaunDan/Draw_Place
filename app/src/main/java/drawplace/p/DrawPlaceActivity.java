@@ -49,7 +49,7 @@ import java.util.Random;
 
 
 public class DrawPlaceActivity extends AppCompatActivity {
-
+//todo make load of ad when the last one ends
     private MyCanvas myCanvas;
     private String currentNameOfImage;
     private EditText input;
