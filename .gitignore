@@ -1,5 +1,4 @@
 draw/.gitignore
-draw/build.gradle
 draw/gradle.properties
 draw/gradlew
 draw/gradlew.bat
