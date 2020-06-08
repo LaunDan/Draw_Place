@@ -49,7 +49,6 @@ import java.util.Random;
 
 
 public class DrawPlaceActivity extends AppCompatActivity {
-//todo make load of ad when the last one ends
     private MyCanvas myCanvas;
     private String currentNameOfImage;
     private EditText input;
@@ -346,7 +345,7 @@ public class DrawPlaceActivity extends AppCompatActivity {
 
     private void loadAd() {
         this.mAd = new RewardedAd(this, "ca-app-pub-8565963453586256/7582350354");
-        RewardedAdLoadCallback callback = new RewardedAdLoadCallback(){
+        RewardedAdLoadCallback callback = new RewardedAdLoadCallback() {
             @Override
             public void onRewardedAdFailedToLoad(int i) {
                 super.onRewardedAdFailedToLoad(i);
