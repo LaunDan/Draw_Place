@@ -331,6 +331,12 @@ public class DrawPlaceActivity extends AppCompatActivity {
                     super.onRewardedAdFailedToShow(i);
                     Log.i(TAG, "onRewardedAdClosed");
                 }
+
+                @Override
+                public void onRewardedAdClosed() {
+                    super.onRewardedAdClosed();
+                    loadAd();
+                }
             };
             this.mAd.show(this, callback);
         } else {
