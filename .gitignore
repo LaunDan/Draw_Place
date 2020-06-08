@@ -11,7 +11,6 @@ draw/app/.gitignore
 draw/app/proguard-rules.pro
 draw/app/src/androidTest/java/drawplace/p/ExampleInstrumentedTest.java
 draw/app/src/test/java/drawplace/p/ExampleUnitTest.java
-build.gradle
 DrawPlace.iml
 gradle.properties
 gradlew
