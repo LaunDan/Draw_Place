@@ -49,6 +49,9 @@ import java.util.Random;
 
 
 public class DrawPlaceActivity extends AppCompatActivity {
+    //todo make ads for something like picture or just thank them for view ads
+
+    
     private MyCanvas myCanvas;
     private String currentNameOfImage;
     private EditText input;
